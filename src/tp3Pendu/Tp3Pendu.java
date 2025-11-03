@@ -28,6 +28,14 @@ public class Tp3Pendu {
             "été", 
             "mer"
         };
-    }
 
-}
+        int tailleTableau = 10; // nombre de mots à générer
+        String chooseWord;
+        Random random = new Random();
+
+        int index = random.nextInt(Words.length);
+        chooseWord = Words[index];
+
+        System.out.println(chooseWord);
+        }
+    }
