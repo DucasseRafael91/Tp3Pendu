@@ -1,6 +1,9 @@
 package tp3Pendu;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Tp3Pendu {
 	
@@ -16,7 +19,7 @@ public class Tp3Pendu {
             "arbre", 
             "livre",
             "ordinateur", 
-            "école", 
+            "ecole", 
             "fleur", 
             "montagne", 
             "rivière", 
@@ -25,7 +28,7 @@ public class Tp3Pendu {
             "amour", 
             "musique", 
             "hiver", 
-            "été", 
+            "ete", 
             "mer"
         };
 
@@ -37,8 +40,20 @@ public class Tp3Pendu {
 
         System.out.println(chooseWord);
         
+        String tiret = "";
+        List<Character> characters = new ArrayList<>();
         for (char c : chooseWord.toCharArray()) {
-            System.out.print("_ ");
+        	characters.add(c);
+            tiret += "_ ";
         }
+        
+        System.out.println("Mot Mystère : " + tiret);
+        
+        
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Proposez une lettre : ");
+        String letter_choose = scan.next();
+        System.out.println(letter_choose);
+
         }
     }
