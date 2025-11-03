@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class Tp3Pendu {
+	
     public static void main(String[] args) {
 
         StringBuilder indent = new StringBuilder();
@@ -54,21 +55,31 @@ public class Tp3Pendu {
 	}
 
 	private static void find_word(String chooseWord, StringBuilder indent, Scanner scan) {
+		
+		int number_of_errors = 0;
+		
 		while (indent.toString().contains("_")) {
             System.out.println("Mot Mystère : " + indent);
             System.out.print("Entrez une lettre : ");
             
-            char letter_choose = scan.next().charAt(0);
 
-            if (chooseWord.indexOf(letter_choose) >= 0) { 
-                for (int i = 0; i < chooseWord.length(); i++) {
-                    if (chooseWord.charAt(i) == letter_choose) {
-                        indent.setCharAt(i, letter_choose);
+
+            while (number_of_errors != 10) {
+                char letter_choose = scan.next().charAt(0);
+            	if (chooseWord.indexOf(letter_choose) >= 0) { 
+                    for (int i = 0; i < chooseWord.length(); i++) {
+                        if (chooseWord.charAt(i) == letter_choose) {
+                            indent.setCharAt(i, letter_choose);
+                        }
                     }
-                }
-            } else {
-                System.out.println("Lettre "+ letter_choose + " incorrecte !");
+                } else {
+                    System.out.println("Lettre "+ letter_choose + " incorrecte !");
+                    number_of_errors += 1;
+                    System.out.println("Vous etes à " + number_of_errors + " erreurs sur 10 possibles");
+                }   	
             }
+        	System.out.println("Le mot était : " + chooseWord);
+            break;    
         }
 	}
 }
