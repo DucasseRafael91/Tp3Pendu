@@ -29,7 +29,6 @@ public class Tp3Pendu {
             "mer"
         };
 
-        int tailleTableau = 10; // nombre de mots à générer
         String chooseWord;
         Random random = new Random();
 
@@ -37,5 +36,9 @@ public class Tp3Pendu {
         chooseWord = Words[index];
 
         System.out.println(chooseWord);
+        
+        for (char c : chooseWord.toCharArray()) {
+            System.out.print("_ ");
+        }
         }
     }
