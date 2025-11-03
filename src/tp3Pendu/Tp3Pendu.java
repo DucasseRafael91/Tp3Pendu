@@ -1,59 +1,74 @@
 package tp3Pendu;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
 public class Tp3Pendu {
-	
-	public static void main(String[] args) {
-        // Liste de mots français possibles
+    public static void main(String[] args) {
+
+        StringBuilder indent = new StringBuilder();
         String[] Words = {
             "chat", 
             "chien", 
             "maison", 
             "voiture", 
             "soleil", 
-            "lune", 
+            "lune",
             "arbre", 
-            "livre",
+            "livre", 
             "ordinateur", 
             "ecole", 
             "fleur", 
-            "montagne", 
-            "rivière", 
+            "montagne",
+            "riviere", 
             "fromage", 
-            "pluie",
+            "pluie", 
             "amour", 
             "musique", 
-            "hiver", 
+            "hiver",
             "ete", 
             "mer"
         };
 
-        String chooseWord;
-        Random random = new Random();
+        String chooseWord = choose_mystery_word(Words);
 
-        int index = random.nextInt(Words.length);
-        chooseWord = Words[index];
+        System.out.println("Mot choisi : " + chooseWord);
 
-        System.out.println(chooseWord);
-        
-        String tiret = "";
-        List<Character> characters = new ArrayList<>();
-        for (char c : chooseWord.toCharArray()) {
-        	characters.add(c);
-            tiret += "_ ";
+
+        for (int i = 0; i < chooseWord.length(); i++) {
+            indent.append("_");
         }
-        
-        System.out.println("Mot Mystère : " + tiret);
-        
-        
+
         Scanner scan = new Scanner(System.in);
-        System.out.println("Proposez une lettre : ");
-        String letter_choose = scan.next();
-        System.out.println(letter_choose);
 
-        }
+        find_word(chooseWord, indent, scan);
+
+        scan.close();
     }
+
+	private static String choose_mystery_word(String[] Words) {
+		Random random = new Random();
+        int index_choose_word = random.nextInt(Words.length);
+        String chooseWord = Words[index_choose_word];
+		return chooseWord;
+	}
+
+	private static void find_word(String chooseWord, StringBuilder indent, Scanner scan) {
+		while (indent.toString().contains("_")) {
+            System.out.println("Mot Mystère : " + indent);
+            System.out.print("Entrez une lettre : ");
+            
+            char letter_choose = scan.next().charAt(0);
+
+            if (chooseWord.indexOf(letter_choose) >= 0) { 
+                for (int i = 0; i < chooseWord.length(); i++) {
+                    if (chooseWord.charAt(i) == letter_choose) {
+                        indent.setCharAt(i, letter_choose);
+                    }
+                }
+            } else {
+                System.out.println("Lettre "+ letter_choose + " incorrecte !");
+            }
+        }
+	}
+}
